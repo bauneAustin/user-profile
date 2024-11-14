@@ -1,12 +1,15 @@
 import Cards from "@/app/ui/dashboard/cards";
 
 // TODO: Probably move these to separate file or db
-const currentProjects = <ul className="list-disc">
+const currentProjects = <ul>
     <li>
         User Dashboard
     </li>
     <li>
         Learn tailwind
+    </li>
+    <li>
+        Try Deno
     </li>
 </ul>;
 
