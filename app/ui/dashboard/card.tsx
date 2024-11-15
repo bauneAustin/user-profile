@@ -1,16 +1,17 @@
 import { ReactNode } from "react";
-import { BoltIcon, ChatBubbleLeftEllipsisIcon, ClipboardDocumentListIcon } from '@heroicons/react/24/outline';
+import { BoltIcon, ChatBubbleLeftEllipsisIcon, ClipboardDocumentListIcon, FireIcon } from '@heroicons/react/24/outline';
 
 export type CardDetails = {
     header: string;
     description: string | number | ReactNode;
-    icon: "bolt" | "chat-bubble-left-ellipsis" | "clipboard-document-list";
+    icon: "bolt" | "chat-bubble-left-ellipsis" | "clipboard-document-list" | "fire";
 };
 
 const IconMap = {
     bolt: BoltIcon,
     "chat-bubble-left-ellipsis": ChatBubbleLeftEllipsisIcon,
-    "clipboard-document-list": ClipboardDocumentListIcon
+    "clipboard-document-list": ClipboardDocumentListIcon,
+    "fire": FireIcon
 };
 
 export default function Card(props: {card: CardDetails}) {

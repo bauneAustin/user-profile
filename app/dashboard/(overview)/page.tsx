@@ -32,6 +32,11 @@ export default async function Page() {
             header: "Number of Posts",
             description: 0,
             icon: "chat-bubble-left-ellipsis"
+        },
+        {
+            header: "Recommendations",
+            description: "another todo",
+            icon: "fire"
         }
     ];
 
