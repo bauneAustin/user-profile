@@ -5,7 +5,7 @@ import { ListRowItem } from "@/app/ui/scrollableLIst/listRow";
 import ScrollableList from "@/app/ui/scrollableLIst/scrollableList";
 
 // actions
-import getPosts from "@/app/lib/blogActions/actions";
+import { getPosts, getGithubCommits } from "@/app/lib/blogActions/actions";
 
 // TODO: Probably move these to separate file or db
 const currentProjects = <ul>
@@ -24,11 +24,12 @@ export default async function Page() {
     // TODO: add better quieries for the data we want
     // Update routing and add suspense while we wait for the data to load
     const posts: ListRowItem[] = await getPosts();
+    const githubComments = await getGithubCommits();
 
     const cardDetails: CardDetails[] = [
         {
             header: "Git Commits",
-            description: 0,
+            description: githubComments[0]?.contributions,
             icon:"bolt"
         },
         {

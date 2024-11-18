@@ -19,14 +19,14 @@ const colorMap : ColorMap = {
 }
 
 export const ListRow = (props: ListRowItem) => {
-    const {title, type} = props;
+    const {title, type, created_at} = props;
     const color = colorMap[type];
     return (
         <div className={`flex flex-col border-l-8 ${color[3]} ${color[0]} rounded-lg w-full h-full p-4 mb-5`}>
             <div className={`flex flex-col h-fill rounded text-xl w-full text-${color[1]}`}>
                 <div className={`flex flex-col ${color[1]} font-semibold`}>
                     {title}
-                    <span className='block text-sm font-medium'>{new Date().toDateString()}</span>
+                    <span className='block text-sm font-medium'>{new Date(created_at).toDateString()}</span>
                 </div>
                 <div className={`flex flex-row-reverse text-sm ${color[2]}`}>
                     {type}
