@@ -3,6 +3,10 @@ import { CardDetails } from "@/app/ui/dashboard/card";
 import Cards from "@/app/ui/dashboard/cards";
 import { ListRowItem } from "@/app/ui/scrollableLIst/listRow";
 import ScrollableList from "@/app/ui/scrollableLIst/scrollableList";
+
+// actions
+import getPosts from "@/app/lib/blogActions/actions";
+
 // TODO: Probably move these to separate file or db
 const currentProjects = <ul>
     <li>
@@ -17,10 +21,14 @@ const currentProjects = <ul>
 </ul>;
 
 export default async function Page() {
+    // TODO: add better quieries for the data we want
+    // Update routing and add suspense while we wait for the data to load
+    const posts: ListRowItem[] = await getPosts();
+
     const cardDetails: CardDetails[] = [
         {
-            header: "TODO",
-            description: "test",
+            header: "Git Commits",
+            description: 0,
             icon:"bolt"
         },
         {
@@ -30,7 +38,7 @@ export default async function Page() {
         },
         {
             header: "Number of Posts",
-            description: 0,
+            description: posts.length,
             icon: "chat-bubble-left-ellipsis"
         },
         {
@@ -39,25 +47,6 @@ export default async function Page() {
             icon: "fire"
         }
     ];
-
-    const testBlogList: ListRowItem[] = [
-        {
-            title: "Test Post",
-            type: "personal"
-        },
-        {
-            title: "NextJS is cool!",
-            type: "js"
-        },
-        {
-            title: "NextJS is cool! 2",
-            type: "js"
-        },
-        {
-            title: "Tailwind is also cool!",
-            type: "css"
-        }
-    ]
 
     return (
         <main className="text-main-950">
@@ -70,12 +59,12 @@ export default async function Page() {
             <div className="mt-6 h-full grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-2">
                 {/* <Suspense fallback={<RevenueChartSkeleton />}> */}
                 <div>
-                    <BarChart />
+                    <BarChart posts={posts} />
                 </div>
                 {/* </Suspense>
                 <Suspense fallback={<LatestInvoicesSkeleton />}> */}
                 <div>
-                    <ScrollableList header="Recent Posts" listRowItems={testBlogList} />
+                    <ScrollableList header="Recent Posts" listRowItems={posts} />
                 </div>
                 {/* </Suspense> */}
             </div>

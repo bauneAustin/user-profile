@@ -10,6 +10,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { ListRowItem } from '../scrollableLIst/listRow';
 
 ChartJS.register(
     CategoryScale,
@@ -20,7 +21,8 @@ ChartJS.register(
     Legend
 );
 
-export const BarChart = () => {
+export const BarChart = (props: {posts: ListRowItem[]}) => {
+    const {posts} = props;
     const options = {
         maintainAspectRatio: false,
         scales: {
@@ -55,16 +57,27 @@ export const BarChart = () => {
         },
     };
 
-    const labels = ['JS', 'CSS', 'Personal', 'Total'];
+    const postCount = posts.reduce((accum, current ) => {
+        accum[current.type] += 1;
+        accum.Total += 1;
+        return accum;
+    }, {
+        CSS: 0,
+        JS: 0,
+        Personal: 0,
+        Total: 0
+    });
+
+    const labels = ['CSS', 'JS', 'Personal', 'Total'];
     const data = {
         labels,
         base: 1,
         datasets: [
             {
                 label: 'Post Amount by Type',
-                data: [2, 1, 1, 4],
-                backgroundColor: ['#85c6ff', '#c1e4b2', '#faf38e'],
-                borderColor: ['#2280ff', '#42812f', '#bd8d0a'],
+                data: [postCount.CSS, postCount.JS, postCount.Personal, postCount.Total],
+                backgroundColor: ['#c1e4b2', '#85c6ff', '#faf38e'],
+                borderColor: ['#42812f', '#2280ff', '#bd8d0a'],
             },
         ],
     };

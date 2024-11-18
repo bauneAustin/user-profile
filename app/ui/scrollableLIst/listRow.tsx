@@ -1,18 +1,21 @@
 export type ListRowItem = {
     title: string;
-    type: "js" | "css" | "personal";
+    type: "JS" | "CSS" | "Personal";
+    id: string;
+    body: string;
+    created_at: string;
 };
 
 type ColorMap = {
-    js: string[];
-    css: string[];
-    personal: string[];
+    JS: string[];
+    CSS: string[];
+    Personal: string[];
 }
 
 const colorMap : ColorMap = {
-    js: ['bg-main-200', 'text-main-900', 'text-main-950', 'border-main-600'],
-    css: ["bg-mallard-200", 'text-mallrd-900', 'text-mallard-950', 'border-mallard-600'],
-    personal: ["bg-marigold-200", 'text-marigold-900', 'text-marigold-950', 'border-marigold-600']
+    JS: ['bg-main-200', 'text-main-900', 'text-main-950', 'border-main-600'],
+    CSS: ["bg-mallard-200", 'text-mallrd-900', 'text-mallard-950', 'border-mallard-600'],
+    Personal: ["bg-marigold-200", 'text-marigold-900', 'text-marigold-950', 'border-marigold-600']
 }
 
 export const ListRow = (props: ListRowItem) => {
