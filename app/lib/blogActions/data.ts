@@ -33,6 +33,6 @@ export async function getPost(id: string) {
 }
 
 export async function getGithubCommits() {
-    const githubCommits = await octokit.rest.repos.listContributors({ repo: 'user-profile', owner: 'bauneAustin' });
+    const githubCommits = await octokit.rest.repos.listContributors({ repo: 'user-profile', owner: 'bauneAustin', anon: '1' });
     return githubCommits.data;
 }
