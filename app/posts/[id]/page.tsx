@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { getPost } from "@/app/lib/blogActions/data";
 import { ListRowItem } from "@/app/ui/scrollableLIst/listRow";
 
-export default async function Page(props) {
+export default async function Page(props: { params: Promise<{ id: string }> }) {
     const params = await props.params;
     const postDetails: ListRowItem[] = await getPost(params.id);
     const {title, type, created_at, body} = postDetails[0];
