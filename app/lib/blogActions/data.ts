@@ -1,4 +1,3 @@
-'use server';
 import { createClient } from '@supabase/supabase-js';
 import { Octokit } from "octokit";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
@@ -17,11 +16,23 @@ export async function getPosts() {
         console.error(error);
         return [];
     }
-
     return data;
 };
 
+export async function getPost(id: string) {
+    const {data, error} = await supabase
+        .from('blog')
+        .select('*')
+        .eq('id', id);
+
+    if (error) {
+        console.error(error);
+        return [];
+    }
+    return data;
+}
+
 export async function getGithubCommits() {
-    const githubCommits = await octokit.rest.repos.listContributors({repo: 'user-profile', owner: 'bauneAustin'});
+    const githubCommits = await octokit.rest.repos.listContributors({ repo: 'user-profile', owner: 'bauneAustin' });
     return githubCommits.data;
 }

@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Austin Baune Profile Dashboard",
 };
 
+import Sidebar from "./ui/sidebar";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+          <div className="w-full flex-none md:w-64">
+            <Sidebar />
+          </div>
+          <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
+        </div>
       </body>
     </html>
   );

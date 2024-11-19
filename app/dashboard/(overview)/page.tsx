@@ -5,15 +5,13 @@ import { ListRowItem } from "@/app/ui/scrollableLIst/listRow";
 import ScrollableList from "@/app/ui/scrollableLIst/scrollableList";
 
 // actions
-import { getPosts, getGithubCommits } from "@/app/lib/blogActions/actions";
+import { getPosts, getGithubCommits } from "@/app/lib/blogActions/data";
+import Link from "next/link";
 
 // TODO: Probably move these to separate file or db
 const currentProjects = <ul>
     <li>
         User Dashboard
-    </li>
-    <li>
-        Learn tailwind
     </li>
     <li>
         Try Deno
@@ -44,7 +42,9 @@ export default async function Page() {
         },
         {
             header: "Recommendations",
-            description: "another todo",
+            description: <Link
+                className="hover:text-main-500"
+                href={"https://www.youtube.com/@syntaxfm"}>Syntax Podcast</Link>,
             icon: "fire"
         }
     ];
