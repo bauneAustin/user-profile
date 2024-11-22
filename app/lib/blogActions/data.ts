@@ -1,7 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
-import { Octokit } from "octokit";
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
+import {getOktokit} from './actions';
+const octokit = getOktokit();
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
@@ -33,6 +32,6 @@ export async function getPost(id: string) {
 }
 
 export async function getGithubCommits() {
-    const githubCommits = await octokit.rest.repos.listContributors({ repo: 'user-profile', owner: 'bauneAustin', anon: '1' });
+    const githubCommits = await (await octokit).rest.repos.listContributors({ repo: 'user-profile', owner: 'bauneAustin', anon: '1' });
     return githubCommits.data;
 }
