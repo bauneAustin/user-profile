@@ -1,3 +1,5 @@
+'use server';
+
 import { createClient } from '@supabase/supabase-js';
 import {getOktokit} from './actions';
 const octokit = getOktokit();
@@ -15,6 +17,7 @@ export async function getPosts() {
         console.error(error);
         return [];
     }
+
     return data;
 };
 

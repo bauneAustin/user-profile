@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import BarChart from "@/app/ui/barChart/barchart";
 import { CardDetails } from "@/app/ui/dashboard/card";
 import Cards from "@/app/ui/dashboard/cards";
@@ -11,10 +13,10 @@ import Link from "next/link";
 // TODO: Probably move these to separate file or db
 const currentProjects = <ul>
     <li>
-        User Dashboard
+        Media-dashboard
     </li>
     <li>
-        Try Deno
+        look into vite
     </li>
 </ul>;
 
